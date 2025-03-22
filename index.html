@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>货币成熟度问卷调查</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- 引入Chart.js库 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>货币成熟度问卷调查</h1>
+    </header>
+    
+    <main>
+        <div id="survey-container">
+            <!-- 个人信息部分 -->
+            <section id="personal-info-section" class="active-section">
+                <h2>个人信息</h2>
+                <form id="personal-info-form">
+                    <div class="question">
+                        <p>年龄：</p>
+                        <div class="options">
+                            <button type="button" class="option-button" data-name="age" data-value="18-24">18-24</button>
+                            <button type="button" class="option-button" data-name="age" data-value="25-34">25-34</button>
+                            <button type="button" class="option-button" data-name="age" data-value="35-44">35-44</button>
+                            <button type="button" class="option-button" data-name="age" data-value="45-54">45-54</button>
+                            <button type="button" class="option-button" data-name="age" data-value="55以上">55以上</button>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <p>性别：</p>
+                        <div class="options">
+                            <button type="button" class="option-button" data-name="gender" data-value="男">男</button>
+                            <button type="button" class="option-button" data-name="gender" data-value="女">女</button>
+                            <button type="button" class="option-button" data-name="gender" data-value="不愿透露">不愿透露</button>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <p>学历：</p>
+                        <div class="options">
+                            <button type="button" class="option-button" data-name="education" data-value="高中及以下">高中及以下</button>
+                            <button type="button" class="option-button" data-name="education" data-value="大专">大专</button>
+                            <button type="button" class="option-button" data-name="education" data-value="本科">本科</button>
+                            <button type="button" class="option-button" data-name="education" data-value="硕士">硕士</button>
+                            <button type="button" class="option-button" data-name="education" data-value="博士">博士</button>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <p>年收入（人民币）：</p>
+                        <div class="options">
+                            <button type="button" class="option-button" data-name="income" data-value="10万以下">10万以下</button>
+                            <button type="button" class="option-button" data-name="income" data-value="10-30万">10-30万</button>
+                            <button type="button" class="option-button" data-name="income" data-value="30-50万">30-50万</button>
+                            <button type="button" class="option-button" data-name="income" data-value="50-100万">50-100万</button>
+                            <button type="button" class="option-button" data-name="income" data-value="100万以上">100万以上</button>
+                        </div>
+                    </div>
+                    
+                    <button type="button" id="next-button" class="gold-button">下一步</button>
+                </form>
+            </section>
+            
+            <!-- 问卷部分 -->
+            <section id="questionnaire-section" class="hidden-section">
+                <h2>问卷调查</h2>
+                <form id="questionnaire-form">
+                    <!-- 问题1 -->
+                    <div class="question">
+                        <p>1. 您平时如何看待金钱？</p>
+                        <div class="options">
+                            <button type="button" class="option-button" data-name="q1" data-value="A">是帮助自己和关心的人的手段。</button>
+                            <button type="button" class="option-button" data-name="q1" data-value="B">如果被妥善管理的话，生活会井井有条。</button>
+                            <button type="button" class="option-button" data-name="q1" data-value="C">说实话，金钱有关的议题时常让我不安和回避。</button>
+                            <button type="button" class="option-button" data-name="q1" data-value="D">金钱是我想法和行为的一种结果。</button>
+                            <button type="button" class="option-button" data-name="q1" data-value="E">我不太关注金钱问题，认为车到山前必有路。</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 问题2 -->
+                    <div class="question">
+                        <p>2. 想到未来的财务规划时，您会如何考虑？</p>
+                        <div class="options">
+                            <button type="button" class="option-button" data-name="q2" data-value="A">我会制定一些简单的储蓄和理财计划。</button>
+                            <button type="button" class="option-button" data-name="q2" data-value="B">目前还没有考虑，按需使用即可。</button>
+                            <button type="button" class="option-button" data-name="q2" data-value="C">我觉得规划金钱切实地使我和他人的未来受益。</button>
+                            <button type="button" class="option-button" data-name="q2" data-value="D">我会尽量思考现状，即使当下没有解决方案。</button>
+                            <button type="button" class="option-button" data-name="q2" data-value="E">我先有目标，再考虑实现目标需要的金钱。</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 问题3 -->
+                    <div class="question">
+                        <p>3. 您如何看待储蓄？</p>
+                        <div class="options">
+                            <button type="button" class="option-button" data-name="q3" data-value="A">我认为储蓄是为自己及他人需求做准备。</button>
+                            <button type="button" class="option-button" data-name="q3" data-value="B">因为主观或客观原因，我尚且不考虑储蓄。</button>
+                            <button type="button" class="option-button" data-name="q3" data-value="C">不管未来是否有用，我认为储蓄和节约不是坏事。</button>
+                            <button type="button" class="option-button" data-name="q3" data-value="D">我认可储蓄，但认为实施起来有一定难度。</button>
+                            <button type="button" class="option-button" data-name="q3" data-value="E">我正在为特定目标而进行储蓄。</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 问题4 -->
+                    <div class="question">
+                        <p>4. 您在花钱时有何内心想法？</p>
+                        <div class="options">
+                            <button type="button" class="option-button" data-name="q4" data-value="A">有一个大致框架，会衡量此次消费是否值得。</button>
+                            <button type="button" class="option-button" data-name="q4" data-value="B">我常常先有目标，为达成目标的消费，理智上都能接受。</button>
+                            <button type="button" class="option-button" data-name="q4" data-value="C">消费时不考虑太多，满足情绪价值就很值。</button>
+                            <button type="button" class="option-button" data-name="q4" data-value="D">除必要外，不太敢消费，花钱甚至让我痛苦。</button>
+                            <button type="button" class="option-button" data-name="q4" data-value="E">生活中我有各种消费，也会质疑其意义，但不排斥为情绪买单。</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 问题5 -->
+                    <div class="question">
+                        <p>5. 您对投资持何态度？</p>
+                        <div class="options">
+                            <button type="button" class="option-button" data-name="q5" data-value="A">如果是我熟悉和理解的方式，我会大胆尝试，亏了就当付学费。</button>
+                            <button type="button" class="option-button" data-name="q5" data-value="B">我认为投资理财带来的效果可能适得其反。</button>
+                            <button type="button" class="option-button" data-name="q5" data-value="C">我熟知通胀、折现、回报率、资产等概念，投资是生活的一部分。</button>
+                            <button type="button" class="option-button" data-name="q5" data-value="D">部分认可投资的必要，但十分担心亏损。</button>
+                            <button type="button" class="option-button" data-name="q5" data-value="E">我有一个具体目标，我认为投资是我实现目标的手段之一</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 问题6 -->
+                    <div class="question">
+                        <p>6. 当他人拥有更多财富时，您有何感想？</p>
+                        <div class="options">
+                            <button type="button" class="option-button" data-name="q6" data-value="A">我会反思自己的生活方式与目标。</button>
+                            <button type="button" class="option-button" data-name="q6" data-value="B">我会感到不平等并对此有所介意。</button>
+                            <button type="button" class="option-button" data-name="q6" data-value="C">不太关心别人富有与否，和我关系不大。</button>
+                            <button type="button" class="option-button" data-name="q6" data-value="D">我会思考能否能学习甚至模仿他们，然后实践一下。</button>
+                            <button type="button" class="option-button" data-name="q6" data-value="E">我会好奇，了解，探究他们成功的方式。</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 问题7 -->
+                    <div class="question">
+                        <p>7. 您如何看待工作？</p>
+                        <div class="options">
+                            <button type="button" class="option-button" data-name="q7" data-value="A">工作是积累财富的途径。</button>
+                            <button type="button" class="option-button" data-name="q7" data-value="B">工作是糊口的手段，和我的感觉无关。</button>
+                            <button type="button" class="option-button" data-name="q7" data-value="C">工作时常让我有负面感觉，但我能克服。</button>
+                            <button type="button" class="option-button" data-name="q7" data-value="D">我在工作上同时追求财务回报和自我实现。</button>
+                            <button type="button" class="option-button" data-name="q7" data-value="E">工作主要是为了精神上的自我满足（神啊…)。</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 问题8 -->
+                    <div class="question">
+                        <p>8. 面对财务困难时，您会如何应对？</p>
+                        <div class="options">
+                            <button type="button" class="option-button" data-name="q8" data-value="A">会将其转化为长期目标，尝试逐步解决。</button>
+                            <button type="button" class="option-button" data-name="q8" data-value="B">历史经验显示我总能解决大部分困恼，甚至帮助别人。</button>
+                            <button type="button" class="option-button" data-name="q8" data-value="C">倾向于暂时搁置，时间会解决一切。</button>
+                            <button type="button" class="option-button" data-name="q8" data-value="D">会关注现状，并感到困扰。</button>
+                            <button type="button" class="option-button" data-name="q8" data-value="E">会立刻寻找解决办法。</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 问题9 -->
+                    <div class="question">
+                        <p>9. 您认为金钱与幸福有何关系？</p>
+                        <div class="options">
+                            <button type="button" class="option-button" data-name="q9" data-value="A">金钱是生活的一部分部分，没有好恶之分。</button>
+                            <button type="button" class="option-button" data-name="q9" data-value="B">我觉得金钱是获得幸福感的手段之一。</button>
+                            <button type="button" class="option-button" data-name="q9" data-value="C">足够的钱和幸福可以划等号。</button>
+                            <button type="button" class="option-button" data-name="q9" data-value="D">金钱其实反而是很多烦恼的根源。</button>
+                            <button type="button" class="option-button" data-name="q9" data-value="E">金钱与是我目前生活状态的原因，也是结果。</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 问题10 -->
+                    <div class="question">
+                        <p>10. 您对借款持何看法？</p>
+                        <div class="options">
+                            <button type="button" class="option-button" data-name="q10" data-value="A">借钱是达成目标的手段之一，判断取决于财务评估。</button>
+                            <button type="button" class="option-button" data-name="q10" data-value="B">必要时我会借钱。</button>
+                            <button type="button" class="option-button" data-name="q10" data-value="C">不管是借别人钱还是借钱给别人，对我是一种社交。</button>
+                            <button type="button" class="option-button" data-name="q10" data-value="D">如果可以借款，我就会借。</button>
+                            <button type="button" class="option-button" data-name="q10" data-value="E">我尽可能不借任何钱。</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 问题11 -->
+                    <div class="question">
+                        <p>11. 您认为何为财务成功？</p>
+                        <div class="options">
+                            <button type="button" class="option-button" data-name="q11" data-value="A">没有财务上的压力就是财务成功。</button>
+                            <button type="button" class="option-button" data-name="q11" data-value="B">强抗风险能力就是财务成功。</button>
+                            <button type="button" class="option-button" data-name="q11" data-value="C">随心所欲生活就是财务成功。</button>
+                            <button type="button" class="option-button" data-name="q11" data-value="D">多到用不完的钱是财务成功。</button>
+                            <button type="button" class="option-button" data-name="q11" data-value="E">利用财富创造了价值是财务成功。</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 问题12 -->
+                    <div class="question">
+                        <p>12. 赚到钱时，您首先想到什么？</p>
+                        <div class="options">
+                            <button type="button" class="option-button" data-name="q12" data-value="A">审视是否因此更接近我的目标和计划。</button>
+                            <button type="button" class="option-button" data-name="q12" data-value="B">激发我的欲望，想再接再厉赚更多。</button>
+                            <button type="button" class="option-button" data-name="q12" data-value="C">一般先花一大部分，犒赏一下自己。</button>
+                            <button type="button" class="option-button" data-name="q12" data-value="D">考虑这笔钱是否能给身边的人帮助。</button>
+                            <button type="button" class="option-button" data-name="q12" data-value="E">尽可能的存起来，享受账户数字增长的快乐。</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 问题13 -->
+                    <div class="question">
+                        <p>13. 您如何看待学习理财知识？</p>
+                        <div class="options">
+                            <button type="button" class="option-button" data-name="q13" data-value="A">我认为理财知识和生存技能一样重要。</button>
+                            <button type="button" class="option-button" data-name="q13" data-value="B">目前没有必要也没有意愿。</button>
+                            <button type="button" class="option-button" data-name="q13" data-value="C">希望学习，但害怕钱越学越少。</button>
+                            <button type="button" class="option-button" data-name="q13" data-value="D">学习理财知识有助于理解自身需求。</button>
+                            <button type="button" class="option-button" data-name="q13" data-value="E">技多不压身，但需辨别是真知识还是假知识。</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 问题14 -->
+                    <div class="question">
+                        <p>14. 与他人因金钱发生分歧时，您如何处理？</p>
+                        <div class="options">
+                            <button type="button" class="option-button" data-name="q14" data-value="A">尽量就事论事，坚持我的价值标准即可。</button>
+                            <button type="button" class="option-button" data-name="q14" data-value="B">可以谈，但谈钱时我常常有所保留。</button>
+                            <button type="button" class="option-button" data-name="q14" data-value="C">羞于和别人谈钱，害怕起争执。</button>
+                            <button type="button" class="option-button" data-name="q14" data-value="D">接受各种结果，钱和教训至少带走一样。</button>
+                            <button type="button" class="option-button" data-name="q14" data-value="E">我认为各有妥协难以避免，结果是商量出来的。</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 问题15 -->
+                    <div class="question">
+                        <p>15. 您对未来生活的经济方面有什么期许？</p>
+                        <div class="options">
+                            <button type="button" class="option-button" data-name="q15" data-value="A">金钱是我达成个人目标工具。</button>
+                            <button type="button" class="option-button" data-name="q15" data-value="B">衣食无忧就很满足。</button>
+                            <button type="button" class="option-button" data-name="q15" data-value="C">有点想象不出。</button>
+                            <button type="button" class="option-button" data-name="q15" data-value="D">金钱是我寻找意义的手段。</button>
+                            <button type="button" class="option-button" data-name="q15" data-value="E">一天比一天好就很满足。</button>
+                        </div>
+                    </div>
+                    
+                    <button type="button" id="submit-button" class="gold-button">提交问卷</button>
+                </form>
+            </section>
+            
+            <!-- 结果部分 -->
+            <section id="result-section" class="hidden-section">
+                <h2>您的货币成熟度结果</h2>
+                <div id="result-content"></div>
+                
+                <!-- 统计图表部分 -->
+                <div id="charts-container" class="hidden-section">
+                    <h3>统计结果</h3>
+                    <div class="charts-grid">
+                        <div class="chart-container">
+                            <h4>按年龄分布的主导阶段</h4>
+                            <canvas id="age-chart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h4>按性别分布的主导阶段</h4>
+                            <canvas id="gender-chart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h4>按学历分布的主导阶段</h4>
+                            <canvas id="education-chart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h4>按年收入分布的主导阶段</h4>
+                            <canvas id="income-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2023 货币成熟度问卷调查</p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html> 
